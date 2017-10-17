@@ -24,9 +24,9 @@
    <center>
       <ScrollPane fx:id="scroll" BorderPane.alignment="CENTER">
          <content>
-            <Group fx:id="groupA" autoSizeChildren="false">
+            <Group fx:id="groupA" autoSizeChildren="true">
                <children>
-                  <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="502.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="802.0" />
+                  <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="-Infinity" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="Infinity" />
                </children>
             </Group>
          </content>
