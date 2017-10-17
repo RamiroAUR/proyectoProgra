@@ -7,7 +7,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.transform.Shear;
 
 
 public class Letter {
@@ -21,7 +20,6 @@ public class Letter {
     private boolean negra=false;
     private boolean cursiva=false;
     private boolean subrayado=false;
-    
     
     public void setPosicion(int posicion) 
     {
@@ -98,15 +96,6 @@ public class Letter {
         return c;
     }
     
-//    public Pane ponerCursiva(Pane letter)
-//    {
-//        Shear sh = new Shear();
-//        sh.setX(-0.3);
-//        letter.getTransforms().add(sh);
-//     
-//        return letter;
-//    }
-    
     private Line lineSubrayado()
     {
         Line linea= new Line(1, 155, 100, 155);
@@ -116,8 +105,7 @@ public class Letter {
     }
 
     private CubicCurve crearCurva(int inicioX, int inicioY, int punto1X, int punto1Y, int punto2X, int punto2Y, int finX, int finY){
-        
-        if(cursiva){
+        if(cursiva){// hacer la cursiva
             if(inicioY<=100){
                 inicioX+=25;
             }
@@ -150,11 +138,9 @@ public class Letter {
             }
         }
         
-        
         CubicCurve curve= new CubicCurve(inicioX,inicioY,punto1X,punto1Y,punto2X,punto2Y,finX,finY);
         
-        
-        if(negra)
+        if(negra) //hacer la negrita
             curve = negrita(curve);
        
         else curve = configurarCurva(curve);
@@ -166,11 +152,12 @@ public class Letter {
         letter.setMinSize(100,200);
         letter.setMaxSize(100,200);
         letter.setStyle("-fx-background-color: white;");
-        
-        Line line= lineSubrayado();
-        
+    
+        Line linea= lineSubrayado();
         if(subrayado)
-            letter.getChildren().add(line);
+        {
+            letter.getChildren().add(linea);
+        }
         
         return letter;
     }
@@ -201,13 +188,9 @@ public class Letter {
         CubicCurve curve3 = crearCurva(25,130,30,150,55,160,80,140);
         letter= puntoControlVisible(curve1, letter);
         
-        Line line= lineSubrayado();
-        
         if(mostrar==false){
-           
                 letter.getChildren().addAll(curve1, curve2, curve3 );
         }
-        
         
         return letter;
        
@@ -308,7 +291,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(50,150,10,180,-50,90,60,30);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(20,100,100,80,10,160,70,150);
+        CubicCurve curve2= crearCurva(20,100,100,80,10,160,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         if(mostrar==false)
@@ -331,7 +314,7 @@ public class Letter {
         CubicCurve curve3= crearCurva(25,150,-5,65,120,50,90,10);
         letter= puntoControlVisible(curve3, letter);
         
-        CubicCurve curve4= crearCurva(90,10,70,5,70,170,100,148);
+        CubicCurve curve4= crearCurva(90,10,70,5,70,170,100,150);
         letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
@@ -365,7 +348,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(30,120,-10,200,110,230,90,30);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(30,120,50,100,90,140,90,150);
+        CubicCurve curve2= crearCurva(30,120,50,100,90,140,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(40,80,60,60,70,40,90,30);
@@ -387,7 +370,7 @@ public class Letter {
         CubicCurve curve2= crearCurva(30,100,70,80,80,110,80,30);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(30,100,90,100,70,150,90,150);
+        CubicCurve curve3= crearCurva(30,100,90,100,70,150,100,150);
         letter= puntoControlVisible(curve3, letter);
         
         if(mostrar==false)
@@ -421,7 +404,7 @@ public class Letter {
         CubicCurve curve2= crearCurva(25,55,75,30,50,100,60,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(55,55,110,30,80,100,90,150);
+        CubicCurve curve3= crearCurva(55,55,110,30,80,100,100,150);
         letter= puntoControlVisible(curve3, letter);
         
         if(mostrar==false)
@@ -437,7 +420,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(10,65, 10,50,30,20,10,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(20,60,100,10,35,150,85,150);
+        CubicCurve curve2= crearCurva(20,60,100,10,35,150,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         if(mostrar==false)
@@ -453,14 +436,14 @@ public class Letter {
         CubicCurve curve1= crearCurva(10,65, 20,50,30,20,10,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(20,65,110,-10,35,150,85,150);
+        CubicCurve curve2= crearCurva(20,65,110,-10,35,150,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(20,40,40,10,20,50,70,30);
         letter= puntoControlVisible(curve3, letter);
         
         if(mostrar==false)
-            letter.getChildren().addAll(curve1,curve2, curve3);
+            letter.getChildren().addAll(curve1,curve2, curve3); 
         return letter;
     }
     
@@ -475,7 +458,7 @@ public class Letter {
         CubicCurve curve2= crearCurva(45,50,90,50,90,130,70,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(15,75,40,85,75,85,100,75);
+        CubicCurve curve3= crearCurva(15,75,40,95,75,95,100,85);
         letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
@@ -536,7 +519,7 @@ public class Letter {
         CubicCurve curve3= crearCurva(85,50,100,80,90,120,30,110);
         letter= puntoControlVisible(curve3, letter);
         
-        CubicCurve curve4= crearCurva(30,110,80,90,80,120,90,150);
+        CubicCurve curve4= crearCurva(30,110,80,90,80,120,100,150);
         letter= puntoControlVisible(curve4, letter);
         
         if(mostrar==false)
@@ -552,7 +535,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(15,150, 90, 0,70,10,50,30);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(50,30,150,100,20,170,90,150);
+        CubicCurve curve2= crearCurva(50,30,150,100,20,170,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         if(mostrar==false)
@@ -565,7 +548,7 @@ public class Letter {
         Pane letter= new Pane();
         letter= configurarPane(letter);
 
-        CubicCurve curve1= crearCurva(90,30,10,120,10,200,90,150);
+        CubicCurve curve1= crearCurva(90,30,10,120,10,200,100,150);
         letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(30,30,40,10,80,50,90,30);
@@ -588,7 +571,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(10,15, 50,20,-40,180,80,145);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(70,15,110,15,55,170,95,150);
+        CubicCurve curve2= crearCurva(70,15,110,15,55,170,100,150);
         letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
@@ -674,7 +657,7 @@ public class Letter {
         CubicCurve curve1 = crearCurva(20, 30, 80, 0, 130, 66, 50, 110);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2 = crearCurva(50, 110, 190, 240, -30, 180, 100, 148);
+        CubicCurve curve2 = crearCurva(50, 110, 190, 240, -30, 180, 100, 150);
         letter= puntoControlVisible(curve2, letter);
         
         if(mostrar== false)
@@ -688,15 +671,15 @@ public class Letter {
         Pane letter= new Pane();
         letter= configurarPane(letter);
 
-        CubicCurve curve1= crearCurva(65,100,-5,80,0,190,65,140);
+        CubicCurve curve1= crearCurva(65,100,-5,80,0,190,65,145);
         letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(65,100,60,140,65,160,100,150);
         letter= puntoControlVisible(curve2, letter);
 
-        if(posicion==75)
+        if(posicion==85)
         {
-            CubicCurve curve3= crearCurva(0,75,30,75,35,120,65,100);
+            CubicCurve curve3= crearCurva(0,85,20,75,25,100,65,100);
             letter= puntoControlVisible(curve3, letter);
             if (mostrar==false)
                 letter.getChildren().addAll(curve1,curve2, curve3);
@@ -762,6 +745,26 @@ public class Letter {
         CubicCurve curve1= crearCurva(75,100,15,80,0,190,100,150);
         letter= puntoControlVisible(curve1, letter);
         
+        if(posicion==85)
+        {
+            CubicCurve curve2= crearCurva(0,85,20,75,30,105,45,100);
+            letter= puntoControlVisible(curve2, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve1, curve2);
+            return letter;
+        
+        }
+        
+        if(posicion==110)
+        {
+            CubicCurve curve2= crearCurva(0,110,20,110,30,115,40,105);
+            letter= puntoControlVisible(curve2, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve1, curve2);
+            return letter;
+        }
         CubicCurve curve2= crearCurva(0,150,20,140,30,125,30,115);
         letter= puntoControlVisible(curve2, letter);
         
@@ -781,8 +784,18 @@ public class Letter {
         CubicCurve curve2= crearCurva(60,90,60,140,65,160,100,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3 = crearCurva(60,90,60,100,60,40,65,35);
+        CubicCurve curve3 = crearCurva(60,90,60,100,60,40,65,15);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve4= crearCurva(0,110,15,110,20,105,30,95);
+            letter= puntoControlVisible(curve4, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve1, curve2, curve3, curve4);
+            return letter;
+        }
         
         CubicCurve curve4 = crearCurva(0,150,5,150,10,145,15,140);
         letter= puntoControlVisible(curve4, letter);
@@ -800,10 +813,20 @@ public class Letter {
         CubicCurve curve1= crearCurva(75,100,30,65,-20,170,100,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(0,150,15,150,25,145,30,145);
+        CubicCurve curve2= crearCurva(75,100,90,130,30,145,35,145);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(75,100,90,130,30,145,30,145);
+        if(posicion==110)
+        {
+            CubicCurve curve3= crearCurva(0,110,5,110,20,110,45,95);
+            letter= puntoControlVisible(curve2, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve1, curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve3= crearCurva(0,150,15,150,25,145,35,145);
         letter= puntoControlVisible(curve3, letter);
 
         if(mostrar== false)
@@ -817,14 +840,29 @@ public class Letter {
         Pane letter= new Pane();
         letter= configurarPane(letter);
 
-        CubicCurve curve1= crearCurva(90,35,70,0,20,230,60,185);
+        CubicCurve curve1= crearCurva(90,30,75,-50,15,250,60,190);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(60,185,85,145,0,90,100,150);
+        if(posicion==110)
+        {
+            
+            CubicCurve curve2= crearCurva(60,190,85,145,0,70,100,150);
+            letter= puntoControlVisible(curve2, letter);
+            
+            CubicCurve curve3= crearCurva(0,110,25,110,100,135,90,30);
+            letter= puntoControlVisible(curve3, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve1, curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve2= crearCurva(60,190,85,145,0,90,100,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(0,150,65,125,100,80,90,35);
-        letter= puntoControlVisible(curve3, letter);
+        
+        CubicCurve curve3= crearCurva(0,150,65,125,100,80,90,30);
+        letter= puntoControlVisible(curve3, letter);        
         
         if(mostrar== false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -835,18 +873,37 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,50,150,15,90,50,90);
+        
+        CubicCurve curve= crearCurva(50,90,100,90,80,170,30,135);
         letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(50,90,100,90,80,170,30,135);
+        CubicCurve curve1= crearCurva(80,120,95,270,-25,160,100,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(80,120,95,270,-25,160,100,150);
-        letter= puntoControlVisible(curve1, letter);
+        if(posicion==110)
+        {
+            
+            CubicCurve curve2= crearCurva(50,90,20,95,15,120,30,135);
+            letter= puntoControlVisible(curve2, letter);
+            
+            CubicCurve curve3= crearCurva(0,110,35,100,20,100,50,90);
+            letter= puntoControlVisible(curve3, letter);
+        
+            if (mostrar==false)
+                letter.getChildren().addAll(curve, curve1, curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve2= crearCurva(30,135,20,130,15,90,50,90);
+        letter= puntoControlVisible(curve2, letter);
+        
+        CubicCurve curve3= crearCurva(0,150,25,150,15,90,45,90);
+        letter= puntoControlVisible(curve3, letter);
+        
+        
         
         if(mostrar== false)
-            letter.getChildren().addAll(curve, curve1, curve2);
+            letter.getChildren().addAll(curve, curve1, curve2, curve3);
         return letter;
     }
 
@@ -854,15 +911,26 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,100,0,10,-50,25,150);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(25,150,20,80,60,85,60,130);
+        CubicCurve curve1= crearCurva(30,150,25,80,65,85,65,130);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(60,130,60,160,70,155,75,150);
+        CubicCurve curve2= crearCurva(65,130,65,155,85,155,100,150);
         letter= puntoControlVisible(curve2, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,130,10,0,-50,30,150);
+            letter= puntoControlVisible(curve, letter);
+            
+            if(mostrar== false)
+                letter.getChildren().addAll(curve, curve1, curve2);
+            
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,120,0,20,-50,30,150);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar== false)
             letter.getChildren().addAll(curve, curve1, curve2);
@@ -874,18 +942,28 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,20,150,25,130,25,100);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(25,100,25,130,20,160,50,150);
+        CubicCurve curve1= crearCurva(50,100,50,130,60,160,100,150);
         letter= puntoControlVisible(curve1, letter);
         
         Circle circle = new Circle();
-        circle.setCenterX(30);
+        circle.setCenterX(50);
         circle.setCenterY(80);
         circle.setFill(Color.FORESTGREEN);
         circle.setRadius(5);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,35,110,50,105,50,100);
+            letter= puntoControlVisible(curve, letter);
+            
+            if(mostrar==false)
+                letter.getChildren().addAll(curve, curve1, circle);
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,35,150,50,130,50,100);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve, curve1, circle);
@@ -897,10 +975,7 @@ public class Letter {
         Pane letter =new Pane();
         letter= configurarPane(letter);
 
-        CubicCurve curve= crearCurva(0,150,10,150,20,125,30,100);
-        letter= puntoControlVisible(curve, letter);
-
-        CubicCurve curve1= crearCurva(30,100,50,270,-50,160,50,150);
+        CubicCurve curve1= crearCurva(30,100,100,290,-60,120,100,150);
         letter= puntoControlVisible(curve1, letter);
         
         Circle circle = new Circle();
@@ -908,6 +983,20 @@ public class Letter {
         circle.setCenterY(80);
         circle.setFill(Color.FORESTGREEN);
         circle.setRadius(5);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,20,110,30,105,30,100);
+            letter= puntoControlVisible(curve, letter);
+        
+            if(mostrar== false)
+                letter.getChildren().addAll(curve, curve1, circle);
+
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,10,150,20,125,30,100);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar== false)
             letter.getChildren().addAll(curve, curve1, circle);
@@ -919,15 +1008,26 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,150,-35,15,-40,40,150);
-        letter= puntoControlVisible(curve, letter);
         
         CubicCurve curve1= crearCurva(35,105,70,70,75,140,40,125);
         letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(40,125,55,130,85,160,100,150);
         letter= puntoControlVisible(curve2, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,155,-5,5,-30,40,150);
+            letter= puntoControlVisible(curve, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve, curve1, curve2);
+        
+             return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,150,-35,15,-40,40,150);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve, curve1, curve2);
@@ -939,12 +1039,24 @@ public class Letter {
         
         Pane letter= new Pane();
         letter= configurarPane(letter);
+        
+        CubicCurve curve2= crearCurva(45,10,10,20,20,165,100,150);
+        letter= puntoControlVisible(curve2, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,60,110,70,25,45,10);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2);
 
+            return letter;
+            
+        }
+        
         CubicCurve curve1= crearCurva(0,150,60,160,70,25,45,10);
         letter= puntoControlVisible(curve1, letter);
-        
-        CubicCurve curve2= crearCurva(45,10,10,20,30,170,75,150);
-        letter= puntoControlVisible(curve2, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2);
@@ -956,18 +1068,29 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,148,30,135,45,55,45,150);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(45,150,40,85,75,90,70,150);
+        CubicCurve curve1= crearCurva(40,150,35,75,70,80,65,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve3= crearCurva(70,150,60,90,95,100,95,125);
+        CubicCurve curve3= crearCurva(65,150,55,80,90,85,90,125);
         letter= puntoControlVisible(curve3, letter);
         
-        CubicCurve curve2= crearCurva(95,125,95,130,95,140,100,150);
+        CubicCurve curve2= crearCurva(90,125,90,130,90,150,100,150);
         letter= puntoControlVisible(curve2, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,30,105,40,65,40,150);
+            letter= puntoControlVisible(curve, letter);
+            
+            if(mostrar==false)
+                letter.getChildren().addAll(curve, curve1, curve2, curve3);
+
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,30,135,40,40,40,150);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve, curve1, curve2, curve3);
@@ -979,15 +1102,25 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,20,135,40,50,45,150);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(45,150,40,90,70,90,75,125);
+        CubicCurve curve1= crearCurva(45,150,40,85,70,85,75,125);
         letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(75,125,75,160,85,155,100,150);
         letter= puntoControlVisible(curve2, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,20,105,45,60,45,150);
+            letter= puntoControlVisible(curve, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve, curve1, curve2);
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,20,135,40,45,45,150);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve, curve1, curve2);
@@ -998,15 +1131,25 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150, 25,85,30,75,30,150);
-        letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(30,105,95,75,40,150,100,150);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(15,80,40,90,50,70,65,80);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,25,95,30,85,30,150);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,25,85,30,75,30,150);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1024,13 +1167,13 @@ public class Letter {
         CubicCurve curve1= crearCurva(65,100,100,135,55,175,30,140);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(30,105,60,120,60,115,100,110);
+        CubicCurve curve2= crearCurva(30,105,60,110,60,115,100,110);
         letter= puntoControlVisible(curve2, letter);
         
         
         if(posicion==110)
         {
-            CubicCurve curve3= crearCurva(0,110,15,115,20,110,25,115);
+            CubicCurve curve3= crearCurva(0,110,15,110,20,105,30,105);
             letter= puntoControlVisible(curve3, letter);
         
             if(mostrar== false)
@@ -1050,18 +1193,29 @@ public class Letter {
         
         Pane letter =new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,15,130,20,120,25,100);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(25,100,25,130,25,120,25,200);
+        CubicCurve curve1= crearCurva(35,100,35,130,35,120,35,200);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(25,110,75,75,75,170,25,150);
+        CubicCurve curve2= crearCurva(35,105,85,75,85,175,35,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(25,150,50,150,60,155,75,150);
+        CubicCurve curve3= crearCurva(35,150,65,150,75,155,100,150);
         letter= puntoControlVisible(curve3, letter);
+
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,20,105,25,105,35,100);
+            letter= puntoControlVisible(curve, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve, curve1, curve2, curve3);
+        
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,20,130,25,120,35,100);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve, curve1, curve2, curve3);
@@ -1073,18 +1227,29 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve= crearCurva(0,150,10,145,15,145,20,140);
-        letter= puntoControlVisible(curve, letter);
         
-        CubicCurve curve1= crearCurva(60,100,60,150,60,150,60,200);
+        CubicCurve curve1= crearCurva(70,100,70,150,70,150,70,200);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(60,100,0,90,0,165,60,150);
+        CubicCurve curve2= crearCurva(70,100,10,90,10,165,70,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(40,170,50,165,65,160,80,150);
+        CubicCurve curve3= crearCurva(40,170,50,165,65,160,100,150);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve= crearCurva(0,110,20,110,25,105,45,100);
+            letter= puntoControlVisible(curve, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve,curve1, curve2, curve3);
+        
+            return letter;
+        }
+        
+        CubicCurve curve= crearCurva(0,150,20,145,25,145,30,140);
+        letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve,curve1, curve2, curve3);
@@ -1097,7 +1262,7 @@ public class Letter {
         Pane letter= new Pane();
         letter= configurarPane(letter);
         
-        CubicCurve curve1= crearCurva(25,100,65,100,65,100,75,100);
+        CubicCurve curve1= crearCurva(30,100,65,100,65,100,75,100);
         letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(75,100,60,130,80,160,100,150);
@@ -1105,7 +1270,7 @@ public class Letter {
         
         if(posicion==110)
         {
-            CubicCurve curve= crearCurva(0,110,35,110,20,110,25,100);
+            CubicCurve curve= crearCurva(0,110,35,105,20,105,30,100);
             letter= puntoControlVisible(curve, letter);
             if(mostrar==false)
                 letter.getChildren().addAll(curve,curve1, curve2);
@@ -1126,15 +1291,25 @@ public class Letter {
         
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,25,135,35,125,45,100);
-        letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(45,100,70,140,50,160,25,145);
+        CubicCurve curve2= crearCurva(50,100,75,140,55,160,30,145);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(25,145,50,160,70,150,75,150);
+        CubicCurve curve3= crearCurva(30,145,55,160,75,150,100,150);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,30,110,40,105,50,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,30,135,40,125,50,100);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1145,15 +1320,25 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,50,160,55,140,60,10);
-        letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(100,150,45,160,50,140,60,10);
+        CubicCurve curve2= crearCurva(100,150,35,160,40,140,50,10);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(35,60,40,60,60,60,85,60);
+        CubicCurve curve3= crearCurva(25,60,30,50,50,70,70,60);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,40,100,55,90,50,10);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,50,160,55,140,50,10);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1164,15 +1349,26 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,20,145,25,125,25,100);
-        letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(25,100,15,170,65,170,60,100);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(60,100,55,150,80,155,90,150);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,15,110,20,105,25,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,20,145,25,125,25,100);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1184,14 +1380,24 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,25,149,40,75,50,115);
-        letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(50,115,50,160,80,160,80,105);
-        letter= puntoControlVisible(curve1, letter);
+        CubicCurve curve2= crearCurva(40,115,45,160,80,160,85,110);
+        letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(80,105,90,110,100,110,100,110);
+        CubicCurve curve3= crearCurva(85,110,90,110,100,110,100,110);
+        letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,25,115,35,80,40,115);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)  
+                letter.getChildren().addAll(curve1,curve2, curve3);
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,25,149,35,75,40,115);
         letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)  
@@ -1205,17 +1411,28 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,10,140,30,125,30,100);
-        letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(30,100,20,170,65,170,60,100);
+        CubicCurve curve2= crearCurva(30,100,20,170,60,170,55,100);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(60,100,50,170,95,170,90,100);
+        CubicCurve curve3= crearCurva(55,100,50,170,90,170,85,105);
         letter= puntoControlVisible(curve3, letter);
         
-        CubicCurve curve4= crearCurva(90,100,100,100,110,100,120,100);
+        CubicCurve curve4= crearCurva(85,105,90,110,95,110,100,110);
+        letter= puntoControlVisible(curve4, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,10,110,20,105,30,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3, curve4);
+
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,10,140,30,125,30,100);
         letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
@@ -1228,15 +1445,26 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,25,135,30,90,40,100);
-        letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(40,100,90,175,100,160,115,150);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(40,155,65,130,85,115,100,100);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,25,105,30,105,40,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,25,135,30,90,40,100);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1248,15 +1476,26 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,30,150,35,90,30,120);
-        letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curve2= crearCurva(30,120,25,160,80,160,75,100);
+        CubicCurve curve2= crearCurva(30,100,25,160,80,160,75,100);
         letter= puntoControlVisible(curve2, letter);
         
         CubicCurve curve3= crearCurva(75,90,90,285,-20,150,100,150);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,20,105,30,90,30,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,30,150,35,90,30,100);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
@@ -1268,15 +1507,26 @@ public class Letter {
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
-
-        CubicCurve curve1= crearCurva(0,150,30,140,25,100,45,100);
-        letter= puntoControlVisible(curve1, letter);
         
         CubicCurve curve2= crearCurva(45,100,70,110,65,140,45,150);
         letter= puntoControlVisible(curve2, letter);
         
-        CubicCurve curve3= crearCurva(45,150,85,220,-40,180,75,150);
+        CubicCurve curve3= crearCurva(45,150,85,220,-40,180,100,150);
         letter= puntoControlVisible(curve3, letter);
+        
+        if(posicion==110)
+        {
+            CubicCurve curve1= crearCurva(0,110,20,105,25,95,45,100);
+            letter= puntoControlVisible(curve1, letter);
+        
+            if(mostrar==false)
+                letter.getChildren().addAll(curve1,curve2, curve3);
+
+            return letter;
+        }
+        
+        CubicCurve curve1= crearCurva(0,150,30,140,20,100,45,100);
+        letter= puntoControlVisible(curve1, letter);
         
         if(mostrar==false)
             letter.getChildren().addAll(curve1,curve2, curve3);
