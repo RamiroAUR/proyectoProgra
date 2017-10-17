@@ -172,17 +172,6 @@ public class Letter {
                 letter.getChildren().addAll(curve1, curve2, curve3 );
         }
         
-        /**
-        else{
-            if (subrayado)
-                letter.getChildren().addAll(curve1, curve2, curve3,punto,punto1,punto2,punto3,punto4,punto5, line);
-            
-            else
-                letter.getChildren().addAll(curve1, curve2, curve3,punto,punto1,punto2,punto3,punto4,punto5);
-            
-            
-        }
-        **/
         
         return letter;
        
