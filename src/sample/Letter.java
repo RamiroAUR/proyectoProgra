@@ -131,6 +131,10 @@ public class Letter {
         letter.setMaxSize(100,200);
         letter.setStyle("-fx-background-color: white;");
         
+        Line line= lineSubrayado();
+        
+        if(subrayado)
+            letter.getChildren().add(line);
         
         return letter;
     }
@@ -164,11 +168,7 @@ public class Letter {
         Line line= lineSubrayado();
         
         if(mostrar==false){
-
-            if (subrayado)
-                letter.getChildren().addAll(curve1, curve2, curve3, line);
-            
-            else
+           
                 letter.getChildren().addAll(curve1, curve2, curve3 );
         }
         
