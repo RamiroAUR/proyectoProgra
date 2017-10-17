@@ -131,9 +131,9 @@ public class Controller implements Initializable{
         // boton para aplicar la expresion regular
         this.applyExpRegular.setOnMouseClicked(e->{
             boolean conito;
-            // ubicaciones
+          
             
-//            double h1=0; double v1=0;
+            ArrayList<Pane> panestotal=new ArrayList<>();   
             
             // tengo las expresiones para todo
             String inputExp =this.expresion.getText();
@@ -146,9 +146,25 @@ public class Controller implements Initializable{
                 if(conito){ 
                     String lineaSinConito=primerExp.substring(1, primerExp.length());
                     expresion.set(0, lineaSinConito);
+                     ArrayList<Pane> paneT=new ArrayList<>();
                     for(int c=0;c<expresion.size();c++){ // va por expresion 
-                        getEstilo(expresion.get(c),c); // aplicar estilo
-                    }       
+                        ArrayList<Pane> panes=getEstilo(expresion.get(c),c); // aplicar estilo
+                        for(Pane p: panes){
+                            paneT.add(p);
+                        }            
+                    }
+                    this.clearGroup();
+                    double x=0, y=0;
+                    for(Pane pane:paneT){
+                        pane.setStyle("-fx-background-color: blueviolet;");
+                        pane.toFront();
+                        pane.setLayoutY(y);
+                        pane.setLayoutX(x);
+                        this.groupA.getChildren().addAll(pane);
+                        pane.toFront();
+
+                        x= x+pane.getMaxWidth();
+                    }
                 }
             
                 else {
@@ -163,85 +179,120 @@ public class Controller implements Initializable{
     }
     
     // agregar el estilo y tamanio 
-        public void getEstilo(String tipoEstilo, int posicionPalabra){
-        // reemplazo el "+" porque me tira error, solo porque es "+" (nose porque Dx)
-        String tipoEstilo1=tipoEstilo.replace('+', '-');
-        // separo los estilos si es que tiene mas de 1
-        ArrayList<String> fullEstilo= this.getExp(tipoEstilo1,"-");
+        public ArrayList<Pane> getEstilo(String tipoEstilo, int posicionPalabra){
         
-        ArrayList<Pane> panestotal=new ArrayList<>();
+        ArrayList<Pane>panes=combinarEstilo(tipoEstilo,posicionPalabra);
+           
+        panes.add(letras.getUpUnknown());
         
-        this.clearGroup(); 
-        // tengo el texto completo a maquillar
+       return panes; 
+    }
+
+    private ArrayList<Pane> combinarEstilo(String estilo, int indexP){
+                        
+        int total=0;
+        for(int i=0; i<estilo.length();i++){
+            char e=estilo.charAt(i);
+            total=total+(int)e;
+        }
+
+        ArrayList<String> palabra= getPalabra();
+        
+        switch (total){
+        
+            case 83://S
+            {
+                letras.CambiarSubrayado();
+                System.out.println("sub");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarSubrayado();
+                return panes;
+                
+            }
+            case 78://N
+            {
+                letras.CambiarNegra();
+                System.out.println("negra");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarNegra();
+                return panes;
+            }
+            case 75://K
+            {
+                letras.CambiarCursiva();
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarCursiva();
+                return panes;
+            }
+            case 196://K+N
+            {
+                letras.CambiarNegra();
+                letras.CambiarCursiva();
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarNegra();
+                letras.CambiarCursiva();
+                return panes;
+                
+                
+            }
+            case 201://K+S
+            {
+                letras.CambiarSubrayado();
+                letras.CambiarCursiva();
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarSubrayado();
+                letras.CambiarCursiva();
+                return panes;
+            }
+            case 204://S+N
+            {
+                letras.CambiarNegra();
+                letras.CambiarSubrayado();
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarNegra();
+                letras.CambiarSubrayado();
+                return panes;
+            }
+            case 322://K+N+S
+            {
+                letras.CambiarNegra();
+                letras.CambiarSubrayado();
+                letras.CambiarCursiva();
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarNegra();
+                letras.CambiarSubrayado();
+                letras.CambiarCursiva();
+                return panes;
+            }
+            default:
+                break;
+        }
+        return null;
+       
+    }
+    
+    private ArrayList<String> getPalabra(){
+        ArrayList<String> palabra=new ArrayList<>();
+
         String input= this.inputText.getText();
         if(input!=null&&!input.equals("")){
             // separar por palabras
-            System.out.println("input: "+input);
-            ArrayList<String> palabras =new ArrayList<>();
-            
+            System.out.println("input: "+input);            
             StringTokenizer tokens = new StringTokenizer(input);
             while(tokens.hasMoreTokens()){
-                palabras.add(tokens.nextToken());
+                palabra.add(tokens.nextToken());
             }
         //--------imprimir nomas---------------
-            for (int q =0; q<palabras.size();q++){
-            System.out.println("palabra: "+palabras.get(q));
+            for (int q =0; q<palabra.size();q++){
+            System.out.println("palabra: "+palabra.get(q));
             }
-            //---------------------------
-            //seleccionar palabra
-            String word = palabras.get(posicionPalabra);
-            System.out.println("palabra select: "+word);
-
-            // aplicar estilo uno por uno  
-            for(int c=0;c<fullEstilo.size();c++){
-                 String L=fullEstilo.get(c);
-                 System.out.println("estiloSelec: "+L);
-                    // primero veo si es numero para el tamaño de las letras
-                    if(isNumeric(L)){
-                        int proporcion=Integer.parseInt(L);
-                    } 
-                    else {// sino lo convierto a caracter y aplico estilo
-                        char estilo=L.charAt(0);// cuando no hay char ni un espacio tira error
-                        System.out.println("letra; "+estilo);
-                        if(estilo=='N'||estilo=='n'){
-                            System.out.println("negra "); 
-                              letras.CambiarNegra();
-                              ArrayList<Pane> panes= this.getPwithSting(word);
-                              letras.CambiarNegra();
-                        }
-                        else{
-                            if (estilo=='S'||estilo=='s'){
-                                System.out.println("subrayado");
-                                letras.CambiarSubrayado();
-                                ArrayList<Pane> panes= this.getPwithSting(word);
-                                letras.CambiarSubrayado();
-                            }
-                            else {
-                                if(estilo=='K'||estilo=='k'){
-                                    System.out.println("cursiva");
-                                    letras.CambiarCursiva();
-                                    ArrayList<Pane> panes= this.getPwithSting(word);
-                                    letras.CambiarCursiva();
-                                }
-                            }
-                        }
-                    }
-                    
-            }
-//                            autohideAlert("¡No existe ese tipo de estilo!",4000);
-//                            ;
-//                        }
-//                    }    
-//                }
-//         }
-//        else {
-//            autohideAlert("¡No ha ingresado texto!",4000);
-//        }
-//       
         }
-    }
+        else{
+            autohideAlert("¡No ha ingresado texto!(ejemplo: ^S,K)",4000);
+        }
 
-    
+        return palabra;
+    }
     
     // ver si una expresion es un numero... para hacer las proporciones de las letras
     private boolean isNumeric(String cadena){
