@@ -120,6 +120,10 @@ public class Controller implements Initializable{
                     pane.toFront();
                     
                     x= x+pane.getMaxWidth();
+                    if (x>=800){
+                        x=0;
+                        y=y+200;
+                    }
                 }
             }else{
                 autohideAlert("¡No ha ingresado texto!",3000);
@@ -147,7 +151,8 @@ public class Controller implements Initializable{
                     String lineaSinConito=primerExp.substring(1, primerExp.length());
                     expresion.set(0, lineaSinConito);
                      ArrayList<Pane> paneT=new ArrayList<>();
-                    for(int c=0;c<expresion.size();c++){ // va por expresion 
+                    for(int c=0;c<expresion.size();c++){ // va por expresion
+                        
                         ArrayList<Pane> panes=getEstilo(expresion.get(c),c); // aplicar estilo
                         for(Pane p: panes){
                             paneT.add(p);
@@ -164,6 +169,10 @@ public class Controller implements Initializable{
                         pane.toFront();
 
                         x= x+pane.getMaxWidth();
+                        if (x>=800){
+                             x=0;
+                           y=y+200;
+                        }
                     }
                 }
             
@@ -267,7 +276,8 @@ public class Controller implements Initializable{
             default:
                 break;
         }
-        return null;
+        ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+        return panes;
        
     }
     
