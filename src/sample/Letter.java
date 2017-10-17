@@ -98,14 +98,14 @@ public class Letter {
         return c;
     }
     
-    public Pane ponerCursiva(Pane letter)
-    {
-        Shear sh = new Shear();
-        sh.setX(-0.3);
-        letter.getTransforms().add(sh);
-     
-        return letter;
-    }
+//    public Pane ponerCursiva(Pane letter)
+//    {
+//        Shear sh = new Shear();
+//        sh.setX(-0.3);
+//        letter.getTransforms().add(sh);
+//     
+//        return letter;
+//    }
     
     private Line lineSubrayado()
     {
@@ -116,7 +116,43 @@ public class Letter {
     }
 
     private CubicCurve crearCurva(int inicioX, int inicioY, int punto1X, int punto1Y, int punto2X, int punto2Y, int finX, int finY){
+        
+        if(cursiva){
+            if(inicioY<=100){
+                inicioX+=25;
+            }
+            
+            if(punto1Y<=100){
+                punto1X+=25;
+            }
+            
+            if(punto2Y<=100){
+                punto2X+=25;
+            }
+            
+            if(finY<=100){
+                finX+=25;
+            }
+            if(inicioY>150){
+                inicioX-=25;
+            }
+            
+            if(punto1Y>150){
+                punto1X-=25;
+            }
+            
+            if(punto2Y>150){
+                punto2X-=25;
+            }
+            
+            if(finY>150){
+                finX-=25;
+            }
+        }
+        
+        
         CubicCurve curve= new CubicCurve(inicioX,inicioY,punto1X,punto1Y,punto2X,punto2Y,finX,finY);
+        
         
         if(negra)
             curve = negrita(curve);
