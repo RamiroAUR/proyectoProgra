@@ -169,7 +169,7 @@ public class Controller implements Initializable{
         // separo los estilos si es que tiene mas de 1
         ArrayList<String> fullEstilo= this.getExp(tipoEstilo1,"-");
         
-        ArrayList<Pane> panes=new ArrayList<>();
+        ArrayList<Pane> panestotal=new ArrayList<>();
         
         this.clearGroup(); 
         // tengo el texto completo a maquillar
