@@ -86,7 +86,7 @@ public class Controller implements Initializable{
                     ArrayList<Pane> panes= getPwithSting(s2);
                 double x=0, y=0;
                 for(Pane pane:panes){
-                    pane.setStyle("-fx-background-color: blueviolet;");
+                    pane.setStyle("-fx-background-color: transparent;");
                     pane.toFront();
                     pane.setLayoutY(y);
                     pane.setLayoutX(x);
@@ -112,7 +112,7 @@ public class Controller implements Initializable{
                 ArrayList<Pane> panes= this.getPwithSting(input);
                 double x=0, y=0;
                 for(Pane pane:panes){
-                    pane.setStyle("-fx-background-color: blueviolet;");
+                    pane.setStyle("-fx-background-color: transparent;");
                     pane.toFront();
                     pane.setLayoutY(y);
                     pane.setLayoutX(x);
@@ -161,7 +161,7 @@ public class Controller implements Initializable{
                     this.clearGroup();
                     double x=0, y=0;
                     for(Pane pane:paneT){
-                        pane.setStyle("-fx-background-color: blueviolet;");
+                        pane.setStyle("-fx-background-color: transparent;");
                         pane.toFront();
                         pane.setLayoutY(y);
                         pane.setLayoutX(x);
