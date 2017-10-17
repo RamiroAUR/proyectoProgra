@@ -168,7 +168,9 @@ public class Controller implements Initializable{
         String tipoEstilo1=tipoEstilo.replace('+', '-');
         // separo los estilos si es que tiene mas de 1
         ArrayList<String> fullEstilo= this.getExp(tipoEstilo1,"-");
-         
+        
+        ArrayList<Pane> panes=new ArrayList<>();
+        
         this.clearGroup(); 
         // tengo el texto completo a maquillar
         String input= this.inputText.getText();
@@ -181,9 +183,11 @@ public class Controller implements Initializable{
             while(tokens.hasMoreTokens()){
                 palabras.add(tokens.nextToken());
             }
+        //--------imprimir nomas---------------
             for (int q =0; q<palabras.size();q++){
             System.out.println("palabra: "+palabras.get(q));
             }
+            //---------------------------
             //seleccionar palabra
             String word = palabras.get(posicionPalabra);
             System.out.println("palabra select: "+word);
@@ -202,21 +206,21 @@ public class Controller implements Initializable{
                         if(estilo=='N'||estilo=='n'){
                             System.out.println("negra "); 
                               letras.CambiarNegra();
-                              ponerPane(word);
+                              ArrayList<Pane> panes= this.getPwithSting(word);
                               letras.CambiarNegra();
                         }
                         else{
                             if (estilo=='S'||estilo=='s'){
                                 System.out.println("subrayado");
                                 letras.CambiarSubrayado();
-                                ponerPane(word);
+                                ArrayList<Pane> panes= this.getPwithSting(word);
                                 letras.CambiarSubrayado();
                             }
                             else {
                                 if(estilo=='K'||estilo=='k'){
                                     System.out.println("cursiva");
                                     letras.CambiarCursiva();
-                                    ponerPane(word);
+                                    ArrayList<Pane> panes= this.getPwithSting(word);
                                     letras.CambiarCursiva();
                                 }
                             }
@@ -238,20 +242,6 @@ public class Controller implements Initializable{
     }
 
     
-    private void ponerPane(String word){
-        ArrayList<Pane> panes= this.getPwithSting(word);
-                                  double x=0, y=0;
-                                for(Pane pane:panes){
-                                    pane.setStyle("-fx-background-color: blueviolet;");
-                                    pane.toFront();
-                                    pane.setLayoutY(y);
-                                    pane.setLayoutX(x);
-                                    this.groupA.getChildren().addAll(pane);
-                                    pane.toFront();
-
-                                    x= x+pane.getMaxWidth();
-                                }
-    }
     
     // ver si una expresion es un numero... para hacer las proporciones de las letras
     private boolean isNumeric(String cadena){
