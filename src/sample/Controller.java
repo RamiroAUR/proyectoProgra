@@ -84,7 +84,9 @@ public class Controller implements Initializable{
 
                     clearGroup();
                     ArrayList<Pane> panes= getPwithSting(s2);
-                double x=0, y=0;
+                     double x=0, y=0,x_word=0;
+                double anchoActual= scroll.getWidth()-50;
+                ArrayList<Pane> word= new ArrayList<>();
                 for(Pane pane:panes){
                     pane.setStyle("-fx-background-color: transparent;");
                     pane.toFront();
@@ -92,13 +94,36 @@ public class Controller implements Initializable{
                     pane.setLayoutX(x);
                     groupA.getChildren().addAll(pane);
                     pane.toFront();
-                    System.out.println("x="+x);
-                    System.out.println("I add");
                     x= x+pane.getMaxWidth();
-                    if (x>=800){
-                        x=0;
-                        y=y+200;
+
+                    if(pane.getRotate()==0){//pregunto si el panel no es espacio
+                        word.add(pane);
+                        x_word+=x;
+
+                    }else{// entra si es espacio
+                        System.out.println(pane.getChildren().isEmpty());
+                        if(word.isEmpty()){//palabra es vacia?
+
+                        }else{//palabra no es vacia
+                            x_word=0;
+                            if(x<=scroll.getWidth()){//la palabra se sale del ancho visible?
+                                word.clear();
+
+                            }else{
+                                y+=200;
+                                for(Pane t_p:word){
+                                    t_p.setLayoutX(x_word);
+                                    t_p.setLayoutY(y);
+                                    x_word+=t_p.getMaxWidth();
+                                }
+                                x=x_word+100;
+                            }
+                        }
                     }
+
+
+
+            
             }
             }});
         
@@ -110,20 +135,46 @@ public class Controller implements Initializable{
             String input= this.inputText.getText();
             if(input!=null&&!input.equals("")){
                 ArrayList<Pane> panes= this.getPwithSting(input);
-                double x=0, y=0;
+                                double x=0, y=0,x_word=0;
+                double anchoActual= scroll.getWidth()-50;
+                ArrayList<Pane> word= new ArrayList<>();
                 for(Pane pane:panes){
                     pane.setStyle("-fx-background-color: transparent;");
                     pane.toFront();
                     pane.setLayoutY(y);
                     pane.setLayoutX(x);
-                    this.groupA.getChildren().addAll(pane);
+                    groupA.getChildren().addAll(pane);
                     pane.toFront();
-                    
                     x= x+pane.getMaxWidth();
-                    if (x>=800){
-                        x=0;
-                        y=y+200;
+
+                    if(pane.getRotate()==0){//pregunto si el panel no es espacio
+                        word.add(pane);
+                        x_word+=x;
+
+                    }else{// entra si es espacio
+                        System.out.println(pane.getChildren().isEmpty());
+                        if(word.isEmpty()){//palabra es vacia?
+
+                        }else{//palabra no es vacia
+                            x_word=0;
+                            if(x<=scroll.getWidth()){//la palabra se sale del ancho visible?
+                                word.clear();
+
+                            }else{
+                                y+=200;
+                                for(Pane t_p:word){
+                                    t_p.setLayoutX(x_word);
+                                    t_p.setLayoutY(y);
+                                    x_word+=t_p.getMaxWidth();
+                                }
+                                x=x_word+100;
+                            }
+                        }
                     }
+
+
+
+            
                 }
             }else{
                 autohideAlert("¡No ha ingresado texto!",3000);
@@ -159,22 +210,45 @@ public class Controller implements Initializable{
                         }            
                     }
                     this.clearGroup();
-                    double x=0, y=0;
-                    for(Pane pane:paneT){
-                        pane.setStyle("-fx-background-color: transparent;");
-                        pane.toFront();
-                        pane.setLayoutY(y);
-                        pane.setLayoutX(x);
-                        this.groupA.getChildren().addAll(pane);
-                        pane.toFront();
+                                    double x=0, y=0,x_word=0;
+                double anchoActual= scroll.getWidth()-50;
+                ArrayList<Pane> word= new ArrayList<>();
+                for(Pane pane:paneT){
+                    pane.setStyle("-fx-background-color: transparent;");
+                    pane.toFront();
+                    pane.setLayoutY(y);
+                    pane.setLayoutX(x);
+                    groupA.getChildren().addAll(pane);
+                    pane.toFront();
+                    x= x+pane.getMaxWidth();
 
-                        x= x+pane.getMaxWidth();
-                        if (x>=800){
-                             x=0;
-                           y=y+200;
+                    if(pane.getRotate()==0){//pregunto si el panel no es espacio
+                        word.add(pane);
+                        x_word+=x;
+
+                    }else{// entra si es espacio
+                        System.out.println(pane.getChildren().isEmpty());
+                        if(word.isEmpty()){//palabra es vacia?
+
+                        }else{//palabra no es vacia
+                            x_word=0;
+                            if(x<=scroll.getWidth()){//la palabra se sale del ancho visible?
+                                word.clear();
+
+                            }else{
+                                y+=200;
+                                for(Pane t_p:word){
+                                    t_p.setLayoutX(x_word);
+                                    t_p.setLayoutY(y);
+                                    x_word+=t_p.getMaxWidth();
+                                }
+                                x=x_word+100;
+                            }
                         }
                     }
                 }
+                }
+
             
                 else {
                     autohideAlert("¡No ha ingresado Expresion Correctamente!(ejemplo: ^S,K)",4000);
@@ -737,6 +811,10 @@ public class Controller implements Initializable{
         } if(character.equals('_')){
             return simbolos.getUpRaya();
         }
+        if(character.equals(' ')){
+    return simbolos.getUpEspacio();
+}
+
         return letras.getUpUnknown();
     }
 
