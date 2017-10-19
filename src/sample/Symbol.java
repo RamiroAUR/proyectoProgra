@@ -605,5 +605,18 @@ public class Symbol {
 
         return letter;
     }
+    public Pane getUpEspacio() {
+
+        Pane letter = new Pane();
+        letter.setMinSize(100, 200);
+        letter.setMaxSize(100, 200);
+        letter.setStyle("-fx-background-color: white;");
+
+        letter.toFront();
+        letter.setRotate(180);
+
+        return letter;
+
+    }
 
 }
