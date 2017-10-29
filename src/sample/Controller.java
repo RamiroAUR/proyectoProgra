@@ -26,7 +26,7 @@ public class Controller implements Initializable{
     private @FXML Group groupA;
     private @FXML Button applyExpRegular;
     private @FXML Button pointControl;
-    private @FXML TextField expresion;
+    private @FXML TextField inputExpresion;
     private @FXML ScrollPane scroll;
     private @FXML Rectangle rect;
     private final Letter letras =new Letter();
@@ -120,10 +120,6 @@ public class Controller implements Initializable{
                             }
                         }
                     }
-
-
-
-            
             }
             }});
         
@@ -191,7 +187,7 @@ public class Controller implements Initializable{
             ArrayList<Pane> panestotal=new ArrayList<>();   
             
             // tengo las expresiones para todo
-            String inputExp =this.expresion.getText();
+            String inputExp =this.inputExpresion.getText();
             if(inputExp!=null&&!inputExp.equals("")){
                 // ver si tiene conito o no
                 ArrayList<String> expresion= this.getExp(inputExp,",");
@@ -285,67 +281,245 @@ public class Controller implements Initializable{
         
             case 83://S
             {
-                letras.CambiarSubrayado();
+                letras.CambiarBoolean("S");
                 System.out.println("sub");
                 ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarSubrayado();
+                letras.CambiarBoolean("S");
                 return panes;
                 
             }
+            case 176://S+2
+            {
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                System.out.println("sub");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                return panes;
+            }
+            case 178://S+4
+            {
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                System.out.println("sub");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                return panes;
+            }
+            case 180://S+6
+            {
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                System.out.println("sub");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                return panes;
+            }
+            case 182://S+8
+            {
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                System.out.println("sub");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                return panes;
+            }
             case 78://N
             {
-                letras.CambiarNegra();
+                letras.CambiarBoolean("N");
                 System.out.println("negra");
                 ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarNegra();
+                letras.CambiarBoolean("N");
+                return panes;
+            }
+            case 171://N+2
+            {
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("2");
+                System.out.println("negra");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("2");
+                return panes;
+            }
+            case 173://N+4
+            {
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("4");
+                System.out.println("negra");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("4");
+                return panes;
+            }
+            case 175://N+6
+            {
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("6");
+                System.out.println("negra");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("6");
+                return panes;
+            }
+            case 177://N+8
+            {
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("8");
+                System.out.println("negra");
+                ArrayList<Pane> panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("8");
                 return panes;
             }
             case 75://K
             {
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
                 ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                return panes;
+            }
+            case 168://K+2
+            {
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("2");
+                return panes;
+            }
+            case 170://K+4
+            {
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("4");
+                return panes;
+            }
+            case 172://K+6
+            {
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("6");
+                return panes;
+            }
+            case 174://K+8
+            {
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("8");
                 return panes;
             }
             case 196://K+N
             {
-                letras.CambiarNegra();
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
                 ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarNegra();
-                letras.CambiarCursiva();
-                return panes;
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                return panes;    
+            }
+            case 289: //K+N+2
+            {
                 
+            }
+            case 291: //K+N+4
+            {
+                
+            }
+            case 293: //K+N+6
+            {
+                
+            }
+            case 295: //K+N+8
+            {
                 
             }
             case 201://K+S
             {
-                letras.CambiarSubrayado();
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
                 ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarSubrayado();
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
                 return panes;
+            }
+            case 294://K+S+2
+            {
+                
+            }
+            case 296://K+S+4
+            {
+                
+            }
+            case 298://K+S+6
+            {
+                
+            }
+            case 300://K+S+8
+            {
+                
             }
             case 204://S+N
             {
-                letras.CambiarNegra();
-                letras.CambiarSubrayado();
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("N");
                 ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarNegra();
-                letras.CambiarSubrayado();
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("N");
                 return panes;
+            }
+            case 297://S+N+2
+            {
+                
+            }
+            case 299://S+N+4
+            {
+                
+            }
+            case 301://S+N+6
+            {
+                
+            }
+            case 303://S+N+8
+            {
+                
             }
             case 322://K+N+S
             {
-                letras.CambiarNegra();
-                letras.CambiarSubrayado();
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
                 ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
-                letras.CambiarNegra();
-                letras.CambiarSubrayado();
-                letras.CambiarCursiva();
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
                 return panes;
+            }
+            case 415://K+N+S+2
+            {
+                
+            }
+            case 417://K+N+S+4
+            {
+                
+            }
+            case 419://K+N+S+6
+            {
+                
+            }
+            case 420://K+N+S+8
+            {
+                
             }
             default:
                 break;
