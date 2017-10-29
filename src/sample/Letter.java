@@ -7,6 +7,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.transform.Scale;
 
 
 public class Letter {
@@ -20,36 +21,73 @@ public class Letter {
     private boolean negra=false;
     private boolean cursiva=false;
     private boolean subrayado=false;
+    private boolean muyEnano=false;
+    private boolean enano=false;
+    private boolean grande=false;
+    private boolean muyGrande=false;
     
     public void setPosicion(int posicion) 
     {
         this.posicion = posicion;
     }
     
+    public boolean CambiarBoolean(String b){
+        
+        if (b.equals("S")){
+            if (subrayado)
+                subrayado=false;
+            else subrayado=true;
+                return subrayado;
+        }
+        if (b.equals("K")){
+            if (cursiva)
+                cursiva=false;
+            else cursiva=true;
+              return cursiva;    
+        }
+        if (b.equals("N")){
+            if (negra)
+                 negra=false;
+            else negra=true;
+                 return negra;
+        }
+        if (b.equals("2")){
+            if (muyEnano)
+                 muyEnano=false;
+            else muyEnano=true;
+                 return muyEnano;
+        }
+        if (b.equals("4")){
+            if (enano)
+                 enano=false;
+            else enano=true;
+                 return enano;
+        }
+        if (b.equals("6")){
+            if (grande)
+                 grande=false;
+            else grande=true;
+                 return grande;
+        }
+        if (b.equals("8")){
+            if (muyGrande)
+                 muyGrande=false;
+            else muyGrande=true;
+                 return muyGrande;
+        }
+        return false;
+    }
+    
+    
      // obtener si es false o true
     public boolean getSubrayado(){
         return this.subrayado;
     }
     
-    // hace el cambio de false a true y al reves
-    public boolean CambiarSubrayado(){
-        if (subrayado)
-            subrayado=false;
-        else subrayado=true;
-     return subrayado;
-    }
     
     // obtener si es false o true
     public boolean getCursiva(){
         return this.cursiva;
-    }
-    
-    // hace el cambio de false a true y al reves
-    public boolean CambiarCursiva(){
-        if (cursiva)
-            cursiva=false;
-        else cursiva=true;
-     return cursiva;
     }
     
     // obtener si es false o true
@@ -57,14 +95,6 @@ public class Letter {
         return this.negra;
     }
     
-    // hace el cambio de false a true y al reves
-    public boolean CambiarNegra(){
-        if (negra)
-            negra=false;
-        else negra=true;
-     return negra;
-    }
-
     // obtener si es false o true
     public boolean PuntosControl(){
         return this.mostrar;
@@ -158,6 +188,20 @@ public class Letter {
         {
             letter.getChildren().add(linea);
         }
+        Scale scale =new Scale();
+        scale.setPivotY(150);
+        if(muyEnano) {
+            scale.setY(0.2);
+            letter.getTransforms().add(scale);}
+         if(enano) {
+            scale.setY(0.5);
+            letter.getTransforms().add(scale);}
+         if(grande) {
+            scale.setY(1.5);  
+            letter.getTransforms().add(scale);}
+        if(muyGrande) {
+            scale.setY(2);
+            letter.getTransforms().add(scale);}
         
         return letter;
     }
