@@ -16,7 +16,7 @@
          <children>
             <TextField fx:id="inputText" prefHeight="21.0" prefWidth="400.0" promptText="Write your text in this box..." style="-fx-font-style: oblique;" />                       
             <Button fx:id="pointControl" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" style="-fx-font-style: oblique;" text="points" />
-            <TextField fx:id="expresion" prefHeight="21.0" prefWidth="150.0" promptText="Write your expresion regular in this box..." style="-fx-font-style: oblique;" />
+            <TextField fx:id="inputExpresion" prefHeight="21.0" prefWidth="150.0" promptText="Write your expresion regular in this box..." style="-fx-font-style: oblique;" />
             <Button fx:id="applyExpRegular" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" style="-fx-font-style: oblique;" text="apply" />
          </children>
       </HBox>
