@@ -77,8 +77,22 @@ public class Letter {
         }
         return false;
     }
-    
-    
+
+    public boolean getMuyEnano() {
+        return muyEnano;
+    }
+
+    public boolean getEnano() {
+        return enano;
+    }
+
+    public boolean getGrande() {
+        return grande;
+    }
+
+    public boolean getMuyGrande() {
+        return muyGrande;
+    }
      // obtener si es false o true
     public boolean getSubrayado(){
         return this.subrayado;
@@ -117,7 +131,7 @@ public class Letter {
     }
     
     // configurar las curvas a mostrar, grosor, color, etc
-    private CubicCurve negrita(CubicCurve c){
+    public CubicCurve negrita(CubicCurve c){
         c.setStroke(Color.FORESTGREEN);
         c.setStrokeWidth(8);
         c.setStrokeLineCap(StrokeLineCap.ROUND);
@@ -693,7 +707,7 @@ public class Letter {
         return letter;
     }
     
-        public Pane getUpZ() {
+    public Pane getUpZ() {
 
         Pane letter = new Pane();
         letter= configurarPane(letter);
@@ -990,19 +1004,16 @@ public class Letter {
         CubicCurve curve1= crearCurva(50,100,50,130,60,160,100,150);
         letter= puntoControlVisible(curve1, letter);
         
-        Circle circle = new Circle();
-        circle.setCenterX(50);
-        circle.setCenterY(80);
-        circle.setFill(Color.FORESTGREEN);
-        circle.setRadius(5);
-        
+        CubicCurve curvePunto = crearCurva(50,80,50,80,50,80,50,80);
+        letter= puntoControlVisible(curvePunto, letter);
+  
         if(posicion==110)
         {
             CubicCurve curve= crearCurva(0,110,35,110,50,105,50,100);
             letter= puntoControlVisible(curve, letter);
             
             if(mostrar==false)
-                letter.getChildren().addAll(curve, curve1, circle);
+                letter.getChildren().addAll(curve, curve1, curvePunto);
             return letter;
         }
         
@@ -1010,7 +1021,7 @@ public class Letter {
         letter= puntoControlVisible(curve, letter);
         
         if(mostrar==false)
-            letter.getChildren().addAll(curve, curve1, circle);
+            letter.getChildren().addAll(curve, curve1, curvePunto);
         return letter;
     }
 
@@ -1022,11 +1033,8 @@ public class Letter {
         CubicCurve curve1= crearCurva(30,100,100,290,-60,120,100,150);
         letter= puntoControlVisible(curve1, letter);
         
-        Circle circle = new Circle();
-        circle.setCenterX(30);
-        circle.setCenterY(80);
-        circle.setFill(Color.FORESTGREEN);
-        circle.setRadius(5);
+        CubicCurve curvePunto = crearCurva(30,80,30,80,30,80,30,30);
+        letter= puntoControlVisible(curvePunto, letter);
         
         if(posicion==110)
         {
@@ -1034,7 +1042,7 @@ public class Letter {
             letter= puntoControlVisible(curve, letter);
         
             if(mostrar== false)
-                letter.getChildren().addAll(curve, curve1, circle);
+                letter.getChildren().addAll(curve, curve1, curvePunto);
 
             return letter;
         }
@@ -1043,7 +1051,7 @@ public class Letter {
         letter= puntoControlVisible(curve, letter);
         
         if(mostrar== false)
-            letter.getChildren().addAll(curve, curve1, circle);
+            letter.getChildren().addAll(curve, curve1, curvePunto);
 
         return letter;
     }
@@ -1420,7 +1428,7 @@ public class Letter {
         return letter;
     }
         
-        public Pane getUpv(){
+    public Pane getUpv(){
 
         Pane letter= new Pane();
         letter= configurarPane(letter);
