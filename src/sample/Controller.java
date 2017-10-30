@@ -961,13 +961,13 @@ public class Controller implements Initializable{
         } if(character.equals(':')){
             return simbolos.getUpDosPuntos();
         } if((int)character == 39){
-            return simbolos.getUpComillasSimplesOpen();
+            return simbolos.getUpComillasSimples();
         } if(character.equals('<')){
             return simbolos.getUpComillasEspOpen();
         } if(character.equals('>')){
             return simbolos.getUpComillasEspClose();
         } if(character.equals('"')){
-            return simbolos.getUpComillasInglesasOpen();
+            return simbolos.getUpComillasInglesas();
         } if(character.equals('(')){
             return simbolos.getUpParentesisOpen();
         } if(character.equals(')')){
