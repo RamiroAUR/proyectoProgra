@@ -281,12 +281,10 @@ public class Symbol {
         letter=configurarPane(letter, 10);
         
         CubicCurve curve1 =crearCurva(5,90,5,90,5,90,5,90);
-        curve1.setStrokeWidth(5);
          letter= letras.puntoControlVisible(curve1, letter);
 
 
-        CubicCurve curve2= crearCurva(5,90,5,95,10,5,5,101);
-        curve2.setStrokeWidth(3);
+        CubicCurve curve2= crearCurva(5,90,5,95,5,95,5,101);        
          letter= letras.puntoControlVisible(curve2, letter);
 
         if (letras.PuntosControl()==false){
@@ -304,20 +302,15 @@ public class Symbol {
         letter=configurarPane(letter, 22);
         
         CubicCurve curve1 =crearCurva(5,90,5,90,5,90,5,90);
-        curve1.setStrokeWidth(5);
          letter= letras.puntoControlVisible(curve1, letter);
 
-
         CubicCurve curve2= crearCurva(5,90,5,95,5,95,5,101);
-        curve2.setStrokeWidth(3);
          letter= letras.puntoControlVisible(curve2, letter);
 
         CubicCurve curve3 =crearCurva(17,90,17,90,17,90,17,90);
-        curve1.setStrokeWidth(5);
          letter= letras.puntoControlVisible(curve1, letter);
 
         CubicCurve curve4= crearCurva(17,90,17,95,17,95,17,101);
-        curve2.setStrokeWidth(3);
          letter= letras.puntoControlVisible(curve2, letter);
 
         if (letras.PuntosControl()==false){
@@ -354,7 +347,6 @@ public class Symbol {
         letter=configurarPane(letter, 10);
         //coma
         CubicCurve curve1 =crearCurva(5,145,5,145,5,145,5,145);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve1, letter);
          
         CubicCurve curve2 =crearCurva(5,145,10,150,10,150,5,156);
@@ -362,7 +354,6 @@ public class Symbol {
         
         //punto
         CubicCurve curve3 =crearCurva(5,110,5,110,5,110,5,110);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve3, letter);
          
         if (letras.PuntosControl()==false){
@@ -378,7 +369,6 @@ public class Symbol {
         letter=configurarPane(letter, 10);
         //coma
         CubicCurve curve1 =crearCurva(5,150,5,150,5,150,5,150);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve1, letter);
          
         CubicCurve curve2 =crearCurva(5,150,10,155,10,155,5,161);
@@ -397,7 +387,6 @@ public class Symbol {
         letter=configurarPane(letter, 10);
 
         CubicCurve curve1 =crearCurva(5,150,5,150,5,150,5,150);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve1, letter);
          
         if (letras.PuntosControl()==false){
@@ -416,7 +405,6 @@ public class Symbol {
         letter= letras.puntoControlVisible(curve1, letter);
          
         CubicCurve curve2 =crearCurva(5,45,5,45,5,45,5,45);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve2, letter);
         
         if (letras.PuntosControl()==false){
@@ -435,7 +423,6 @@ public class Symbol {
         letter= letras.puntoControlVisible(curve1, letter);
          
         CubicCurve curve2 =crearCurva(5,155,5,155,5,155,5,155);
-        curve1.setStrokeWidth(5);
         letter= letras.puntoControlVisible(curve2, letter);
         
         if (letras.PuntosControl()==false){
