@@ -30,7 +30,7 @@ public class Controller implements Initializable{
     private @FXML ScrollPane scroll;
     private @FXML Rectangle rect;
     private final Letter letras =new Letter();
-    private final Symbol simbolos =new Symbol();
+    private final Selection selection =new Selection();
     private ArrayList<Pane> panesLetras =new ArrayList<>();
     
     
@@ -85,10 +85,12 @@ public class Controller implements Initializable{
 
                     clearGroup();
                     ArrayList<Pane> panes= getPwithSting(s2);
+//                    ArrayList<Pane> panesLetras= getPwithSting(s2);
                      double x=0, y=0,x_word=0;
                 double anchoActual= scroll.getWidth()-50;
                 ArrayList<Pane> word= new ArrayList<>();
                 for(Pane pane:panes){
+//                    for(Pane pane:panesLetras){
                     pane.setStyle("-fx-background-color: transparent;");
                     pane.toFront();
                     pane.setLayoutY(y);
@@ -180,89 +182,18 @@ public class Controller implements Initializable{
         
         );
 
-//        
+        
 //        inputExpresion.textProperty().addListener(new ChangeListener<String>() {
 //            @Override
 //            public void changed(ObservableValue<? extends String> observableValue, String SAntiguo, String SNuevo) {
-//                    boolean conito;
-//                    ArrayList<String> expresion=new ArrayList<>();
-//                    if(SNuevo.charAt(0)=='^'){
-//                        if(SNuevo.charAt(SNuevo.length()-1)=='+'||SNuevo.charAt(SNuevo.length()-1)==','){
-//                            String inputExp = SAntiguo;
-//                            expresion= getExp(inputExp,",");
-//                        }
-//                        else{
-//                            String inputExp = SNuevo;
-//                            expresion= getExp(inputExp,",");
-//                        }
-//                        // ver si tiene conito o no
-////                         expresion= getExp(inputExp,",");
-//                         String primerExp = expresion.get(0);
-//                         conito =existeConito(primerExp);
-//                         // si es que existe, elimino el conito sino tira a la alerta
-//                        if(conito){ 
-//                            String lineaSinConito=primerExp.substring(1, primerExp.length());
-//                            expresion.set(0, lineaSinConito);
-//                            panesLetras.clear();
-//                            for(int c=0;c<expresion.size();c++){ // va por expresion
-//                        
-//                               ArrayList<Pane> panes=getEstilo(expresion.get(c),c); // aplicar estilo
-//                                for(Pane p: panes){
-//                                    panesLetras.add(p);
-//                                }            
-//                            }
-//                            clearGroup();
-//                                    double x=0, y=0,x_word=0;
-//                double anchoActual= scroll.getWidth()-50;
-//                ArrayList<Pane> word= new ArrayList<>();
-//                for(Pane pane:panesLetras){
-//                    pane.setStyle("-fx-background-color: transparent;");
-//                    pane.toFront();
-//                    pane.setLayoutY(y);
-//                    pane.setLayoutX(x);
-//                    groupA.getChildren().addAll(pane);
-//                    pane.toFront();
-//                    x= x+pane.getMaxWidth();
 //
-//                    if(pane.getRotate()==0){//pregunto si el panel no es espacio
-//                        word.add(pane);
-//                        x_word+=x;
-//
-//                    }else{// entra si es espacio
-//                        System.out.println(pane.getChildren().isEmpty());
-//                        if(word.isEmpty()){//palabra es vacia?
-//
-//                        }else{//palabra no es vacia
-//                            x_word=0;
-//                            if(x<=scroll.getWidth()){//la palabra se sale del ancho visible?
-//                                word.clear();
-//
-//                            }else{
-//                                y+=200;
-//                                for(Pane t_p:word){
-//                                    t_p.setLayoutX(x_word);
-//                                    t_p.setLayoutY(y);
-//                                    x_word+=t_p.getMaxWidth();
-//                                }
-//                                x=x_word+100;
-//                            }
-//                        }
-//                    }
-//                }
-//                }
-//
-//            
-//                else {
-//                    autohideAlert("¡No ha ingresado Expresion Correctamente!(ejemplo: ^S,K)",4000);
-//                }
-//            }
-//            else{
-//                autohideAlert("¡No ha ingresado texto!(ejemplo: ^S,K)",4000);
-//            }
-//               
+//                boolean conito;
+//                ArrayList<String> expresion= getExp(SNuevo,",");
+//                String primerExp= expresion.get(0);
+//                conito =existeConito(primerExp);
 //            }
 //        });
-//    }
+
         
         // boton para aplicar la expresion regular
         this.applyExpRegular.setOnMouseClicked(e->{
@@ -521,19 +452,47 @@ public class Controller implements Initializable{
             }
             case 289: //K+N+2
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("2");
+                return panes;
             }
             case 291: //K+N+4
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("4");
+                return panes;
             }
             case 293: //K+N+6
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("6");
+                return panes;
             }
             case 295: //K+N+8
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("8");
+                return panes;
             }
             case 201://K+S
             {
@@ -546,19 +505,47 @@ public class Controller implements Initializable{
             }
             case 294://K+S+2
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                return panes;
             }
             case 296://K+S+4
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                return panes;
             }
             case 298://K+S+6
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                return panes;
             }
             case 300://K+S+8
             {
-                
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                return panes;
             }
             case 204://S+N
             {
@@ -571,19 +558,47 @@ public class Controller implements Initializable{
             }
             case 297://S+N+2
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("2");
+                return panes;
             }
             case 299://S+N+4
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("4");
+                return panes;
             }
             case 301://S+N+6
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("6");
+                return panes;
             }
             case 303://S+N+8
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("8");
+                return panes;
             }
             case 322://K+N+S
             {
@@ -598,19 +613,83 @@ public class Controller implements Initializable{
             }
             case 415://K+N+S+2
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("2");
+                return panes;
             }
             case 417://K+N+S+4
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("4");
+                return panes;
             }
             case 419://K+N+S+6
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("6");
+                return panes;
             }
             case 420://K+N+S+8
             {
-                
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("N");
+                letras.CambiarBoolean("S");
+                letras.CambiarBoolean("K");
+                letras.CambiarBoolean("8");
+                return panes;
+            }
+            case 50://2
+            {
+                letras.CambiarBoolean("2");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("2");
+                return panes;
+            }
+            case 52://4
+            {
+                letras.CambiarBoolean("4");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("4");
+                return panes;
+            }
+            case 54://6
+            {
+                letras.CambiarBoolean("6");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("6");
+                return panes;
+            }
+            case 56://8
+            {
+                letras.CambiarBoolean("8");
+                ArrayList<Pane>panes= this.getPwithSting(palabra.get(indexP));
+                letras.CambiarBoolean("8");
+                return panes;
             }
             default:
                 break;
@@ -678,401 +757,10 @@ public class Controller implements Initializable{
         }else {
             ArrayList<Pane> panes= new ArrayList<>();
             for (Character character:string.toCharArray()){
-                panes.add(this.getPwithChar(character));
+                panes.add(selection.getPwithChar(character));
 
             }
             return panes;
         }
     }
-    
-    public Pane crearPaneLetra(Pane pane, int i)
-    {
-        Pane panel= pane;
-        letras.setPosicion(i);
-        return panel;
-    }
-    
-    // obtener los caracteres artisticos
-    public Pane getPwithChar(Character character){
-        
-        
-        
-        switch (character) {
-            
-            case 'A':
-            {
-                Pane pane= crearPaneLetra(letras.getUpA(), 150);
-                return pane;
-            }
-                
-            case 'B':
-            {
-                Pane pane= crearPaneLetra(letras.getUpB(), 150);
-                return pane;
-            }
-            
-            case 'C':
-            {
-                Pane pane= crearPaneLetra(letras.getUpC(), 150);
-                return pane;
-            }
-            
-            case 'D':
-            {
-                Pane pane= crearPaneLetra(letras.getUpD(), 150);
-                return pane;
-            }
-            
-            case 'E':
-            {
-                Pane pane= crearPaneLetra(letras.getUpE(), 150);
-                return pane;
-            }
-            
-            case 'F':
-            {
-                Pane pane= crearPaneLetra(letras.getUpF(), 150);
-                return pane;
-            }
-            
-            case 'G':
-            {
-                Pane pane= crearPaneLetra(letras.getUpG(), 150);
-                return pane;
-            }
-            
-            case 'H':
-            {
-                Pane pane= crearPaneLetra(letras.getUpH(), 150);
-                return pane;
-            }
-            
-            case 'I':
-            {
-                Pane pane= crearPaneLetra(letras.getUpI(), 150);
-                return pane;
-            }
-            
-            case 'J':
-            {
-                Pane pane= crearPaneLetra(letras.getUpJ(), 150);
-                return pane;
-            }
-            
-            case 'K':
-            {
-                Pane pane= crearPaneLetra(letras.getUpK(), 150);
-                return pane;
-            }
-            
-            case 'L':
-            {
-                Pane pane= crearPaneLetra(letras.getUpL(), 150);
-                return pane;
-            }
-            
-            case 'M':
-            {
-                Pane pane= crearPaneLetra(letras.getUpM(), 150);
-                return pane;
-            }
-            
-            case 'N':
-            {
-                Pane pane= crearPaneLetra(letras.getUpN(), 150);
-                return pane;
-            }
-            
-            case 'Ñ':
-            {
-                Pane pane= crearPaneLetra(letras.getUpEnie(), 150);
-                return pane;
-            }
-            
-            case 'O':
-            {
-                Pane pane= crearPaneLetra(letras.getUpO(), 85);
-                return pane;
-            }
-                    
-            case 'P':
-            {
-                Pane pane= crearPaneLetra(letras.getUpP(), 150);
-                return pane;
-            }
-            
-            case 'Q':
-            {
-                Pane pane= crearPaneLetra(letras.getUpQ(), 150);
-                return pane;
-            }
-            
-            case 'R':
-            {
-                Pane pane= crearPaneLetra(letras.getUpR(), 150);
-                return pane;
-            }
-            
-            case 'S':
-            {
-                Pane pane= crearPaneLetra(letras.getUpS(), 150);
-                return pane;
-            }
-            
-            case 'T':
-            {
-                Pane pane= crearPaneLetra(letras.getUpT(), 150);
-                return pane;
-            }
-            
-            case 'U':
-            {
-                Pane pane= crearPaneLetra(letras.getUpU(), 150);
-                return pane;
-            }
-            
-            case 'V':
-            {
-                Pane pane= crearPaneLetra(letras.getUpV(), 150);
-                return pane;
-            }
-            
-            case 'W':
-            {
-                Pane pane= crearPaneLetra(letras.getUpW(), 150);
-                return pane;
-            }
-            
-            case 'X':
-            {
-                Pane pane= crearPaneLetra(letras.getUpX(), 150);
-                return pane;
-            }
-            
-            case 'Y':
-            {
-                Pane pane= crearPaneLetra(letras.getUpY(), 150);
-                return pane;
-            }
-            
-            case 'Z':
-            {
-                Pane pane= crearPaneLetra(letras.getUpZ(), 150);
-                return pane;
-            }
-            
-            case 'a':
-            {
-                Pane pane= crearPaneLetra(letras.getUpa(), 150);
-                return pane;
-            }
-            
-            case 'b':
-            {
-                Pane pane= crearPaneLetra(letras.getUpb(), 110);
-                return pane;
-            }
-            
-            case 'c':
-            {
-                Pane pane= crearPaneLetra(letras.getUpc(), 150);
-                return pane;
-            }
-            
-            case 'd':
-            {
-                Pane pane= crearPaneLetra(letras.getUpd(), 150);
-                return pane;
-            }
-            
-            case 'e':
-            {
-                Pane pane= crearPaneLetra(letras.getUpe(), 150);
-                return pane;
-            }
-            
-            case 'f':
-            {
-                Pane pane= crearPaneLetra(letras.getUpf(), 150);
-                return pane;
-            }
-            
-            case 'g':
-            {
-                Pane pane= crearPaneLetra(letras.getUpg(), 150);
-                return pane;
-            }
-            
-            case 'h':
-            {
-                Pane pane= crearPaneLetra(letras.getUph(), 150);
-                return pane;
-            }
-            
-            case 'i':
-            {
-                Pane pane= crearPaneLetra(letras.getUpi(), 150);
-                return pane;
-            }
-            
-            case 'j':
-            {
-                Pane pane= crearPaneLetra(letras.getUpj(), 150);
-                return pane;
-            }
-            
-            case 'k':
-            {
-                Pane pane= crearPaneLetra(letras.getUpk(), 150);
-                return pane;
-            }
-            
-            case 'l':
-            {
-                Pane pane= crearPaneLetra(letras.getUpl(), 150);
-                return pane;
-            }
-            
-            case 'm':
-            {
-                Pane pane= crearPaneLetra(letras.getUpm(), 150);
-                return pane;
-            }
-            
-            case 'n':
-            {
-                Pane pane= crearPaneLetra(letras.getUpn(), 150);
-                return pane;
-            }
-            
-            case 'ñ':
-            {
-                Pane pane= crearPaneLetra(letras.getDownEnie(), 150);
-                return pane;
-            }
-            
-            case 'o':
-            {
-                Pane pane= crearPaneLetra(letras.getUpo(), 110);
-                return pane;
-            }
-            
-            case 'p':
-            {
-                Pane pane= crearPaneLetra(letras.getUpp(), 150);
-                return pane;
-            }
-            
-            case 'q':
-            {
-                Pane pane= crearPaneLetra(letras.getUpq(), 150);
-                return pane;
-            }
-            
-            case 'r':
-            {
-                Pane pane= crearPaneLetra(letras.getUpr(), 150);
-                return pane;
-            }
-            
-            case 's':
-            {
-                Pane pane= crearPaneLetra(letras.getUps(), 150);
-                return pane;
-            }
-            
-            case 't':
-            {
-                Pane pane= crearPaneLetra(letras.getUpt(), 150);
-                return pane;
-            }
-            
-            case 'u':
-            {
-                Pane pane= crearPaneLetra(letras.getUpu(), 150);
-                return pane;
-            }
-            
-            case 'v':
-            {
-                Pane pane= crearPaneLetra(letras.getUpv(), 110);
-                return pane;
-            }
-            
-            case 'w':
-            {
-                Pane pane= crearPaneLetra(letras.getUpw(), 110);
-                return pane;
-            }
-            
-            case 'x':
-            {
-                Pane pane= crearPaneLetra(letras.getUpx(), 150);
-                return pane;
-            }
-            
-            case 'y':
-            {
-                Pane pane= crearPaneLetra(letras.getUpy(), 150);
-                return pane;
-            }
-            
-            case 'z':
-            {
-                Pane pane= crearPaneLetra(letras.getUpz(), 150);
-                return pane;
-            }
-            
-            default:
-                break;
-        } 
-
-        if(character.equals('¿')){
-            return simbolos.getUPPreguntaOpen();
-        } if(character.equals('?')){
-            return simbolos.getUPPreguntaClose();
-        } if(character.equals('¡')){
-            return simbolos.getUpExOpen();
-        } if(character.equals('!')){
-            return simbolos.getUpExClose();
-        } if(character.equals('.')) {
-            return simbolos.getUpPunto();
-        } if(character.equals(',')){
-            return simbolos.getUpComa();
-        } if(character.equals(';')){
-            return simbolos.getUpPuntoComa();
-        } if(character.equals(':')){
-            return simbolos.getUpDosPuntos();
-        } if((int)character == 39){
-            return simbolos.getUpComillasSimples();
-        } if(character.equals('<')){
-            return simbolos.getUpComillasEspOpen();
-        } if(character.equals('>')){
-            return simbolos.getUpComillasEspClose();
-        } if(character.equals('"')){
-            return simbolos.getUpComillasInglesas();
-        } if(character.equals('(')){
-            return simbolos.getUpParentesisOpen();
-        } if(character.equals(')')){
-            return simbolos.getUpParentesisClose();
-        } if(character.equals('[')){
-            return simbolos.getUpCorcheteOpen();
-        } if(character.equals(']')){
-            return simbolos.getUpCorcheteClose();
-        } if(character.equals('{')){
-            return simbolos.getUpLlaveOpen();
-        } if(character.equals('}')){
-            return simbolos.getUpLlaveClose();
-        } if(character.equals('-')){
-            return simbolos.getUpGuion();
-        } if(character.equals('_')){
-            return simbolos.getUpRaya();
-        }
-        if(character.equals(' ')){
-    return simbolos.getUpEspacio();
-}
-
-        return letras.getUpUnknown();
-    }
-
 }
