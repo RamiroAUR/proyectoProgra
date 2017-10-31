@@ -31,6 +31,7 @@ public class Controller implements Initializable{
     private @FXML Rectangle rect;
     private final Letter letras =new Letter();
     private final Symbol simbolos =new Symbol();
+    private ArrayList<Pane> panesLetras =new ArrayList<>();
     
     
     public void getText(){
@@ -179,13 +180,96 @@ public class Controller implements Initializable{
         
         );
 
+//        
+//        inputExpresion.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String SAntiguo, String SNuevo) {
+//                    boolean conito;
+//                    ArrayList<String> expresion=new ArrayList<>();
+//                    if(SNuevo.charAt(0)=='^'){
+//                        if(SNuevo.charAt(SNuevo.length()-1)=='+'||SNuevo.charAt(SNuevo.length()-1)==','){
+//                            String inputExp = SAntiguo;
+//                            expresion= getExp(inputExp,",");
+//                        }
+//                        else{
+//                            String inputExp = SNuevo;
+//                            expresion= getExp(inputExp,",");
+//                        }
+//                        // ver si tiene conito o no
+////                         expresion= getExp(inputExp,",");
+//                         String primerExp = expresion.get(0);
+//                         conito =existeConito(primerExp);
+//                         // si es que existe, elimino el conito sino tira a la alerta
+//                        if(conito){ 
+//                            String lineaSinConito=primerExp.substring(1, primerExp.length());
+//                            expresion.set(0, lineaSinConito);
+//                            panesLetras.clear();
+//                            for(int c=0;c<expresion.size();c++){ // va por expresion
+//                        
+//                               ArrayList<Pane> panes=getEstilo(expresion.get(c),c); // aplicar estilo
+//                                for(Pane p: panes){
+//                                    panesLetras.add(p);
+//                                }            
+//                            }
+//                            clearGroup();
+//                                    double x=0, y=0,x_word=0;
+//                double anchoActual= scroll.getWidth()-50;
+//                ArrayList<Pane> word= new ArrayList<>();
+//                for(Pane pane:panesLetras){
+//                    pane.setStyle("-fx-background-color: transparent;");
+//                    pane.toFront();
+//                    pane.setLayoutY(y);
+//                    pane.setLayoutX(x);
+//                    groupA.getChildren().addAll(pane);
+//                    pane.toFront();
+//                    x= x+pane.getMaxWidth();
+//
+//                    if(pane.getRotate()==0){//pregunto si el panel no es espacio
+//                        word.add(pane);
+//                        x_word+=x;
+//
+//                    }else{// entra si es espacio
+//                        System.out.println(pane.getChildren().isEmpty());
+//                        if(word.isEmpty()){//palabra es vacia?
+//
+//                        }else{//palabra no es vacia
+//                            x_word=0;
+//                            if(x<=scroll.getWidth()){//la palabra se sale del ancho visible?
+//                                word.clear();
+//
+//                            }else{
+//                                y+=200;
+//                                for(Pane t_p:word){
+//                                    t_p.setLayoutX(x_word);
+//                                    t_p.setLayoutY(y);
+//                                    x_word+=t_p.getMaxWidth();
+//                                }
+//                                x=x_word+100;
+//                            }
+//                        }
+//                    }
+//                }
+//                }
+//
+//            
+//                else {
+//                    autohideAlert("¡No ha ingresado Expresion Correctamente!(ejemplo: ^S,K)",4000);
+//                }
+//            }
+//            else{
+//                autohideAlert("¡No ha ingresado texto!(ejemplo: ^S,K)",4000);
+//            }
+//               
+//            }
+//        });
+//    }
+        
         // boton para aplicar la expresion regular
         this.applyExpRegular.setOnMouseClicked(e->{
             boolean conito;
-          
-            
+
             ArrayList<Pane> panestotal=new ArrayList<>();   
-            
+            System.out.println("expresion: "+this.inputExpresion.getText());
             // tengo las expresiones para todo
             String inputExp =this.inputExpresion.getText();
             if(inputExp!=null&&!inputExp.equals("")){
@@ -204,6 +288,13 @@ public class Controller implements Initializable{
                         for(Pane p: panes){
                             paneT.add(p);
                         }            
+                    }
+                    int posicionFinal=paneT.size();
+                    String restoInputT = inputText.getText();
+                    String resto = restoInputT.substring(posicionFinal, restoInputT.length());
+                    ArrayList<Pane> panesResto= getPwithSting(resto);
+                    for(Pane p:panesResto){
+                        paneT.add(p);
                     }
                     this.clearGroup();
                                     double x=0, y=0,x_word=0;
@@ -552,15 +643,7 @@ public class Controller implements Initializable{
         return palabra;
     }
     
-    // ver si una expresion es un numero... para hacer las proporciones de las letras
-    private boolean isNumeric(String cadena){
-	try {
-		Integer.parseInt(cadena);
-		return true;
-	} catch (NumberFormatException nfe){
-		return false;
-	}
-}
+    
     
     //ver si tiene el conito al principio
     public boolean existeConito(String S){
