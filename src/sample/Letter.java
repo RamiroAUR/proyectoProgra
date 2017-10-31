@@ -1033,7 +1033,7 @@ public class Letter {
         CubicCurve curve1= crearCurva(30,100,100,290,-60,120,100,150);
         letter= puntoControlVisible(curve1, letter);
         
-        CubicCurve curvePunto = crearCurva(30,80,30,80,30,80,30,30);
+        CubicCurve curvePunto = crearCurva(30,80,30,80,30,80,30,80);
         letter= puntoControlVisible(curvePunto, letter);
         
         if(posicion==110)
